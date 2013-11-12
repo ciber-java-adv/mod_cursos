@@ -30,6 +30,11 @@ public class CursoDaoImpl  implements CursoDao{
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
+    @Override
+    public void grabarCurso(Curso objCurso) {
+       sessionFactory.getCurrentSession().save(objCurso);
+    }
     
     
     

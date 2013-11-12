@@ -10,5 +10,9 @@ import pe.edu.cibertec.proyectocurso.model.Curso;
 public interface CursoService {
     
      public List<Curso> listarCursos();
+     
+     public void grabarCurso(Curso objCurso) ;
     
 }
+  
+    

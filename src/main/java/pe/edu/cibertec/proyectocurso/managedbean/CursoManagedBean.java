@@ -36,6 +36,8 @@ public class CursoManagedBean implements Serializable{
     private CursoService servicioCurso;
     private List<Curso> listaCursos= new ArrayList<Curso>();
     
+    private Curso objCurso= new Curso();
+    
     public CursoManagedBean() {
         
     }
@@ -44,7 +46,7 @@ public class CursoManagedBean implements Serializable{
     public String listarCursos(){
         listaCursos=servicioCurso.listarCursos();
         
-        return "curso/listaCursos";
+        return "/curso/listaCursos?faces-redirect=true";
     }
 
     public CursoService getServicioCurso() {
@@ -63,7 +65,19 @@ public class CursoManagedBean implements Serializable{
     public void setListaCursos(List<Curso> listaCursos) {
         this.listaCursos = listaCursos;
     }
+
+    public Curso getObjCurso() {
+        return objCurso;
+    }
+
+    public void setObjCurso(Curso objCurso) {
+        this.objCurso = objCurso;
+    }
     
-    
+    public String grabarCurso(){
+        servicioCurso.grabarCurso(objCurso);
+        
+        return listarCursos();
+    }
     
 }

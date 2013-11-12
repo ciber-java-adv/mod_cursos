@@ -30,6 +30,12 @@ public class CursoServiceImpl implements CursoService{
         return cursoDao.listarCursos();
     }
     
+    @Transactional
+    @Override
+    public void grabarCurso(Curso objCurso) {
+       cursoDao.grabarCurso(objCurso);
+    }
+    
     
     
     
