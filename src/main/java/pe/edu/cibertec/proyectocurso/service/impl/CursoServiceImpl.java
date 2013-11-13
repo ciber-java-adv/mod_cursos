@@ -36,6 +36,24 @@ public class CursoServiceImpl implements CursoService{
        cursoDao.grabarCurso(objCurso);
     }
     
+    @Transactional(readOnly = true)
+    @Override
+    public Curso obtenerCurso(Curso objCurso) {
+        return cursoDao.obtenerCurso(objCurso);
+    }
+    
+    @Transactional
+    @Override
+    public void actualizarCurso(Curso objCurso) {
+      cursoDao.actualizarCurso(objCurso);
+    }
+    
+    @Transactional
+    @Override
+    public void eliminarCurso(Curso objCurso) {
+       cursoDao.eliminarCurso(objCurso);
+    }
+    
     
     
     

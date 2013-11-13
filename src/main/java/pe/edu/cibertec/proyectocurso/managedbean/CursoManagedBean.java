@@ -38,6 +38,8 @@ public class CursoManagedBean implements Serializable{
     
     private Curso objCurso= new Curso();
     
+    private Integer codigoCurso;
+    
     public CursoManagedBean() {
         
     }
@@ -75,9 +77,49 @@ public class CursoManagedBean implements Serializable{
     }
     
     public String grabarCurso(){
-        servicioCurso.grabarCurso(objCurso);
+        if(objCurso.getCodigoCurso()==-1){
+             System.out.print("ENTRA A INSERTAR CURSOS");
+             servicioCurso.grabarCurso(objCurso);
+        }else{
+             System.out.print("ENTRA A ACTUALIZAR CURSOS");
+             servicioCurso.actualizarCurso(objCurso);
+        }
+       
         
         return listarCursos();
     }
+    
+    public String nuevoCurso(){
+        objCurso = new Curso();
+        
+        return "/curso/registroCursos";
+    }
+    
+    public String obtenerCurso(){
+        Curso curso= new Curso();
+        curso.setCodigoCurso(codigoCurso);
+        objCurso=servicioCurso.obtenerCurso(curso);
+        return "/curso/registroCursos?faces-redirect=true";
+    }
+    
+    public String eliminarCurso(){
+        Curso curso= new Curso();
+        curso.setCodigoCurso(codigoCurso);
+        objCurso=servicioCurso.obtenerCurso(curso);         
+        servicioCurso.eliminarCurso(objCurso);
+        //return "/curso/listaCursos?faces-redirect=true";
+        return listarCursos();
+        
+    }
+
+    public Integer getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    public void setCodigoCurso(Integer codigoCurso) {
+        this.codigoCurso = codigoCurso;
+    }
+    
+    
     
 }

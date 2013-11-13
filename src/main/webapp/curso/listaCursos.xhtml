@@ -20,18 +20,28 @@
 
                 <p:row>
                     <p:column>
-                        <p:dataTable value="#{cursoManagedBean.listaCursos}" var="objCurso">
+                        <p:dataTable id="tablaCursos" value="#{cursoManagedBean.listaCursos}" var="objCurso">
 
                             <p:column headerText="Codigo">#{objCurso.codigoCurso}</p:column>
                             <p:column headerText="Descripcion">#{objCurso.descripcionCurso}</p:column>
-
-
+                            <p:column headerText="">
+                                <p:commandLink action="#{cursoManagedBean.obtenerCurso}" value="A">
+                                     <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
+                                </p:commandLink>
+                               
+                            </p:column>
+                              <p:column headerText="">
+                                  <p:commandLink action="#{cursoManagedBean.eliminarCurso}" value="E" update=":frmListaCursos:tablaCursos">
+                                     <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
+                                </p:commandLink>
+                               
+                            </p:column>
                         </p:dataTable>
                     </p:column>
                 </p:row>
                 <p:row>
                     <p:column>
-                        <p:commandLink value="Nuevo Curso" action="/curso/registroCursos"></p:commandLink>
+                        <p:commandLink value="Nuevo Curso" action="#{cursoManagedBean.nuevoCurso}"></p:commandLink>
                     </p:column>
                 </p:row>
             </p:panelGrid>

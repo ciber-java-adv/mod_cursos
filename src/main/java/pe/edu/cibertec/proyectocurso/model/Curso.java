@@ -21,6 +21,16 @@ public class Curso implements Serializable{
     @Column(name="nombrecurso")
     private String descripcionCurso;
 
+    public Curso() {
+        codigoCurso=-1;
+    }
+
+   
+    
+    
+    
+    
+
     public Integer getCodigoCurso() {
         return codigoCurso;
     }

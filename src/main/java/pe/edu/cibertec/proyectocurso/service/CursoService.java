@@ -12,7 +12,9 @@ public interface CursoService {
      public List<Curso> listarCursos();
      
      public void grabarCurso(Curso objCurso) ;
-    
+     public Curso obtenerCurso(Curso objCurso);
+      public void actualizarCurso(Curso objCurso);
+       public void eliminarCurso(Curso objCurso);
 }
   
     
