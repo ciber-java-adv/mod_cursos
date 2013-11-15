@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+    <appender name="Consola" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">      
+            <param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss.S} |%5p| (%C:%M:%L) - %m%n"/>
+        </layout>
+    </appender>
+  
+    <appender name="Archivo" class="org.apache.log4j.RollingFileAppender">
+        <param name="Append" value="true" />
+        <param name="File" value="${webapp.root}/WEB-INF/logs/logger.log" />
+        <param name="MaxFileSize" value="4MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="Encoding" value="ISO-8859-1"/>
+        <layout class="org.apache.log4j.PatternLayout">            
+            <param name="ConversionPattern" value="[#|%d{yyyy/MM/dd HH:mm:ss.S}|%5p| (%F:%M:%3L) - %m |#]%n%n" />
+        </layout>
+    </appender>
+    
+    <category name="org.apache.log4j.xml">
+        <priority value="info" />
+    </category>
+  
+    <category name="org.springframework">
+        <priority value="info" />
+    </category>
+  
+    <category name="org.hibernate">
+        <priority value="info" />
+    </category>
+  
+    <category name="pe.edu.cibertec.proyectocurso">
+        <priority value="debug" />    
+    </category>
+    
+    <logger name="pe.edu.cibertec.proyectocurso">
+        <appender-ref ref="Archivo" />
+    </logger>
+    <root>
+        <priority value ="debug" />
+        <appender-ref ref="Consola" />
+   </root>
+</log4j:configuration>
+
+<!--
+    c - El nombre de la clase que llama, si se da sin precisión se devuelve el nombre completo.
+    C - El nombre de clase completo.
+    d - La fecha de la solicitud de registro, se puede formatear con java.text.SimpleDateFormat, es decir,% d {aaaa-MM-dd}
+    F - El nombre del archivo que llama.
+    l - La información de ubicación, lo mismo que% C% H (% F:% L). Esto puede ser lento.
+    L - El número de la línea de clase llamando
+    m - El registro de mensajes.
+    M - El método de la clase que llama.
+    n - El separador de línea dependiente de la plataforma.
+    p - el nivel de registro.
+    r - La fecha relativa en milisegundos desde el inicio de la aplicación.
+    t - El hilo de la invocación.
+    [x | X] - la información de diagnóstico Mensaje (MDC).
+-->
