@@ -7,10 +7,7 @@ package pe.edu.cibertec.proyectocurso.managedbean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -25,7 +22,7 @@ import pe.edu.cibertec.proyectocurso.service.CursoService;
 @Component
 @Scope("session")
 public class CursoManagedBean implements Serializable{
-    
+    private static Logger logger = Logger.getLogger(CursoManagedBean.class);
 
     /**
      * Creates a new instance of CursoManagedBean
@@ -40,12 +37,14 @@ public class CursoManagedBean implements Serializable{
     
     private Integer codigoCurso;
     
-    public CursoManagedBean() {
-        
+    public CursoManagedBean() {        
+        logger.info("Inicio - CursoManagedBean");
+        logger.debug("Fin - CursoManagedBean");
     }
     
     
     public String listarCursos(){
+        logger.info("Listar Cursos");
         listaCursos=servicioCurso.listarCursos();
         
         return "/curso/listaCursos?faces-redirect=true";
