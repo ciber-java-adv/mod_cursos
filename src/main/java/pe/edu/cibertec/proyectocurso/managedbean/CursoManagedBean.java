@@ -50,30 +50,7 @@ public class CursoManagedBean implements Serializable{
         return "/curso/listaCursos?faces-redirect=true";
     }
 
-    public CursoService getServicioCurso() {
-        return servicioCurso;
-    }
-
-    public void setServicioCurso(CursoService servicioCurso) {
-        this.servicioCurso = servicioCurso;
-    }
-
-   
-    public List<Curso> getListaCursos() {
-        return listaCursos;
-    }
-
-    public void setListaCursos(List<Curso> listaCursos) {
-        this.listaCursos = listaCursos;
-    }
-
-    public Curso getObjCurso() {
-        return objCurso;
-    }
-
-    public void setObjCurso(Curso objCurso) {
-        this.objCurso = objCurso;
-    }
+    
     
     public String grabarCurso(){
         if(objCurso.getCodigoCurso()==-1){
@@ -111,6 +88,7 @@ public class CursoManagedBean implements Serializable{
         
     }
 
+    //Metodos Get - Set
     public Integer getCodigoCurso() {
         return codigoCurso;
     }
@@ -119,6 +97,29 @@ public class CursoManagedBean implements Serializable{
         this.codigoCurso = codigoCurso;
     }
     
-    
+    public CursoService getServicioCurso() {
+        return servicioCurso;
+    }
+
+    public void setServicioCurso(CursoService servicioCurso) {
+        this.servicioCurso = servicioCurso;
+    }
+
+   
+    public List<Curso> getListaCursos() {
+        return listaCursos;
+    }
+
+    public void setListaCursos(List<Curso> listaCursos) {
+        this.listaCursos = listaCursos;
+    }
+
+    public Curso getObjCurso() {
+        return objCurso;
+    }
+
+    public void setObjCurso(Curso objCurso) {
+        this.objCurso = objCurso;
+    }
     
 }

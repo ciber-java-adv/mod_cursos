@@ -13,12 +13,6 @@ import pe.edu.cibertec.proyectocurso.model.Auditoria;
  */
 @Service("auditoriaService")
 public interface AuditoriaService {
-    
-    
-    
+
     public void insertarAuditoria(Auditoria objAuditoria);
-        
-    
-    
-    
 }

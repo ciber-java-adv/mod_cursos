@@ -32,7 +32,12 @@ public class Curso implements Serializable{
     
     @Column(name = "duracion")
     private String duracion;
+    
+    @Column(name = "prerequisitos")
+    private String preRequisitos;
 
+    @Column(name = "creditos")
+    private Integer creditos;
     
     public Curso() {
         codigoCurso=-1;
@@ -85,6 +90,22 @@ public class Curso implements Serializable{
 
     public void setDuracion(String duracion) {
         this.duracion = duracion;
+    }
+
+    public String getPreRequisitos() {
+        return preRequisitos;
+    }
+
+    public void setPreRequisitos(String preRequisitos) {
+        this.preRequisitos = preRequisitos;
+    }
+
+    public Integer getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(Integer creditos) {
+        this.creditos = creditos;
     }
 
     

@@ -12,77 +12,43 @@
             
        default-lazy-init="true">
     
-     <context:component-scan base-package="pe.edu.cibertec.proyectocurso" />
-    <context:annotation-config />
-    
-    <!--
-    
-    
- 
-     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" id="propertyPlaceholder">
-        <property name="locations">
-            <list>
-                <value>classpath:database.propertie</value>
-            </list>
-        </property>
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-    </bean>
-    
-    <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    
-      <property name="driverClassName" value="${jdbc.driverClassName}" />
-	<property name="url" value="${jdbc.url}" />
-	<property name="username" value="${jdbc.username}" />
-	<property name="password" value="${jdbc.password}" />
-    
-    
-  </bean>
-   
-     -->
-  
-  <!--
-    <context:property-placeholder location="classpath:pe/edu/cibertec/proyectocurso/properties/database.properties" />
-
-
-  <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    
-      <property name="driverClassName" value="${jdbc.driverClassName}" />
-	<property name="url" value="${jdbc.url}" />
-	<property name="username" value="${jdbc.username}" />
-	<property name="password" value="${jdbc.password}" />
-    
-    
-  </bean>
-  -->
+        <context:component-scan base-package="pe.edu.cibertec.proyectocurso" />
+        <context:annotation-config />               
+        
+        <!-- Conexion a Base de Datos -->
+        <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" id="propertyPlaceholder">
+           <property name="location" value="classpath:database.properties"/>                    
+           <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        </bean>
+        <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">    
+           <property name="driverClassName" value="${jdbc.driverClassName}" />
+           <property name="url" value="${jdbc.url}" />
+           <property name="username" value="${jdbc.username}" />
+           <property name="password" value="${jdbc.password}" />        
+        </bean>        
+        <!--
+          <context:property-placeholder location="classpath:pe/edu/cibertec/proyectocurso/properties/database.properties" />
+          <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+                <property name="driverClassName" value="${jdbc.driverClassName}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+          </bean>
+        -->
  
 
- <bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-          
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://localhost:3306/bd_curso" />
-	<property name="username" value="root" />
-	<property name="password" value="mysql" />
-           
-      
-  </bean>
-
-
-   
- 
     
-   
-    
+              
      <!--
-    <bean id="cursoService" class="pe.edu.cibertec.proyectocurso.service.impl.CursoServiceImpl">
-        <property name="cursoDao" ref="cursoDao" />
-    </bean>
-    
-    
-    <bean id="cursoDao" class="pe.edu.cibertec.proyectocurso.dao.impl.CursoDaoImpl">
-        <property name="sessionFactory" ref="SessionFactory" />
-    </bean>
-    
-    -->
+        <bean id="cursoService" class="pe.edu.cibertec.proyectocurso.service.impl.CursoServiceImpl">
+            <property name="cursoDao" ref="cursoDao" />
+        </bean>
+
+
+        <bean id="cursoDao" class="pe.edu.cibertec.proyectocurso.dao.impl.CursoDaoImpl">
+            <property name="sessionFactory" ref="SessionFactory" />
+        </bean>    
+      -->
     
     
     <!-- Session Factory Declaration -->
@@ -91,13 +57,12 @@
         <property name="annotatedClasses">
             <list>
                 <value>pe.edu.cibertec.proyectocurso.model.Curso</value>
-                 <value>pe.edu.cibertec.proyectocurso.model.Auditoria</value>
+                <value>pe.edu.cibertec.proyectocurso.model.Auditoria</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-               
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>               
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
@@ -105,7 +70,7 @@
     
     
     <aop:config>
-         <aop:aspect id="aspectoCurso" ref="auditoriaInterceptor" >
+        <aop:aspect id="aspectoCurso" ref="auditoriaInterceptor" >
             <aop:pointcut id="antesEliminarCursoPuntoCorte" expression="execution(* pe.edu.cibertec.proyectocurso.service.impl.CursoServiceImpl.eliminarCurso(..))"/>
             <aop:before method="antesEliminarCursoInterceptor" pointcut-ref="antesEliminarCursoPuntoCorte" />
         </aop:aspect>
