@@ -3,38 +3,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
+    <ui:composition template="/plantilla/uiMaestro.xhtml">
+        <ui:define name="app">
+            <div align="center">
 
-        <h:form id="frmRegistrarCurso">
-            <h:inputHidden value="#{cursoManagedBean.objCurso.codigoCurso}"></h:inputHidden>
-            <p:panelGrid>
-                <f:facet name="header">
-                    Registro de Curso
-                </f:facet>
-                <p:row>
-                    <p:column>
-                        <p:outputLabel value="Nombre: "></p:outputLabel>
-                    </p:column>
-                    <p:column>
-                        <p:inputText value="#{cursoManagedBean.objCurso.descripcionCurso}"></p:inputText>
-                    </p:column>
-                </p:row>
-                <p:row>
-                    <p:column colspan="2">
-                        <p:commandButton value="Grabar" action="#{cursoManagedBean.grabarCurso}" ajax="false"></p:commandButton>
-                    </p:column>
+                <h:form id="frmRegistrarCurso">
+                    <h:inputHidden value="#{cursoManagedBean.objCurso.codigoCurso}"></h:inputHidden>
+                    <p:panel header="#{etiquetas.cl_cursos_titulo_registro}" style="width: 250px;"> 
+                        <p:panelGrid>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_nombre}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{cursoManagedBean.objCurso.nombreCurso}"></p:inputText>
+                                </p:column>                                        
+                            </p:row>
 
-                </p:row>
-            </p:panelGrid>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_descripcion}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputTextarea value="#{cursoManagedBean.objCurso.descripcionCurso}" cols="20" rows="5"></p:inputTextarea>
+                                </p:column>
+                            </p:row>
 
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_tipoCurso}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>                                    
+                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.tipoCurso}" required="true" requiredMessage="Seleccione Tipo Curso">
+                                        <f:selectItem itemValue="" itemLabel="--Seleccione--"/>
+                                        <f:selectItems value="#{cursoManagedBean.listTipoCurso}"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
 
-        </h:form>
+                            <p:row>
+                                <p:column colspan="2">
+                                    <p:commandButton value="Grabar" action="#{cursoManagedBean.grabarCurso}" update="message" ajax="false"></p:commandButton>
+                                </p:column>
+                            </p:row> 
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:growl id="message" redisplay="true" globalOnly="true" />
+                </h:form>
+            </div>
 
-    </h:body>
+        </ui:define>
+
+    </ui:composition>
 </html>
 

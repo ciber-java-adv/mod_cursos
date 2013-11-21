@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+    <f:view contentType="text/html" locale="es">
+        <h:head>
+            <f:facet name="first">            
+                <title>#{etiquetas.cl_titulo}</title>
+            </f:facet>           
+            <ui:insert name="resources-app"/>                              
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north">
+                    <ui:include src="uiCabecera.xhtml"/>
+                </p:layoutUnit>
+                
+                <p:layoutUnit position="west" size="200">
+                    <ui:include src="uiMenu.xhtml"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="east" size="200" collapsed="true">
+                    <h:outputText value="Right unit content." />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <ui:insert name="app"/>  
+                </p:layoutUnit>
+                
+                <p:layoutUnit position="south" size="100">
+                    <h2>Integrantes:</h2>
+                    <ul>
+                    <li>Luis Benvenuto</li>
+                    <li>Elmer Montenegro Ybañez</li>
+                    <li>Josué Huancapaza Córdova </li>
+                    </ul>
+                </p:layoutUnit>
+            </p:layout>
+                                  
+            <ui:insert name="dialogs"/>        
+        </h:body>
+    </f:view>
+</html>
