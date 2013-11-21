@@ -20,80 +20,81 @@ import pe.edu.cibertec.proyectocurso.util.Constante;
  *
  * @author LUIS BENVENUTO
  */
-
 @Component
 @Scope("session")
-public class CursoManagedBean implements Serializable{
+public class CursoManagedBean implements Serializable {
+
     private static Logger logger = Logger.getLogger(CursoManagedBean.class);
-    
     //@ManagedProperty(value="#{cursoService}")
     @Autowired
     private CursoService servicioCurso;
-    private List<Curso> listaCursos= new ArrayList<Curso>();
     
-    private Curso objCurso= new Curso();    
+    
+    
+    private List<Curso> listaCursos = new ArrayList<Curso>();
+    private Curso objCurso = new Curso();
     private Integer codigoCurso;
     private List<SelectItem> listTipoCurso;
-    
-    public CursoManagedBean() {        
+
+    public CursoManagedBean() {
         logger.info("Inicio - CursoManagedBean");
         cargar();
         logger.debug("Fin - CursoManagedBean");
     }
-    
-    
-    public String listarCursos(){
+
+    public String listarCursos() {
         logger.info("Listar Cursos");
-        listaCursos=servicioCurso.listarCursos();
-        
+        listaCursos = servicioCurso.listarCursos();
+
+     
+
         return "/curso/listaCursos?faces-redirect=true";
     }
-        
-    public String grabarCurso(){
-        if(objCurso.getCodigoCurso()==-1){
-             logger.info("ENTRA A INSERTAR CURSOS");
-             servicioCurso.grabarCurso(objCurso);
-        }else{
-             logger.info("ENTRA A ACTUALIZAR CURSOS");
-             servicioCurso.actualizarCurso(objCurso);
+
+    public String grabarCurso() {
+        if (objCurso.getCodigoCurso() == -1) {
+            logger.info("ENTRA A INSERTAR CURSOS");
+            servicioCurso.grabarCurso(objCurso);
+        } else {
+            logger.info("ENTRA A ACTUALIZAR CURSOS");
+            servicioCurso.actualizarCurso(objCurso);
         }
-       
-        
+
+
         return listarCursos();
     }
-    
-    public String nuevoCurso(){
+
+    public String nuevoCurso() {
         objCurso = new Curso();
-        
+
         return "/curso/registroCursos";
     }
-    
-    public String obtenerCurso(){
-        Curso curso= new Curso();
+
+    public String obtenerCurso() {
+        Curso curso = new Curso();
         curso.setCodigoCurso(codigoCurso);
-        objCurso=servicioCurso.obtenerCurso(curso);
+        objCurso = servicioCurso.obtenerCurso(curso);
         return "/curso/registroCursos?faces-redirect=true";
     }
-    
-    public String eliminarCurso(){
-        Curso curso= new Curso();
+
+    public String eliminarCurso() {
+        Curso curso = new Curso();
         curso.setCodigoCurso(codigoCurso);
-        objCurso=servicioCurso.obtenerCurso(curso);         
+        objCurso = servicioCurso.obtenerCurso(curso);
         servicioCurso.eliminarCurso(objCurso);
         //return "/curso/listaCursos?faces-redirect=true";
         return listarCursos();
-        
+
     }
-    
+
     //Otros Metodos
-    private void cargar(){
+    private void cargar() {
         listTipoCurso = new ArrayList<SelectItem>();
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_CIENCIAS, Constante.TIPOCURSO_CIENCIAS_DESC));
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_HUMANIDADES, Constante.TIPOCURSO_HUMANIDADES_DESC));
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_POLITICA, Constante.TIPOCURSO_POLITICA_DESC));
     }
-    
-    
+
     //Metodos Get - Set
     public Integer getCodigoCurso() {
         return codigoCurso;
@@ -102,7 +103,7 @@ public class CursoManagedBean implements Serializable{
     public void setCodigoCurso(Integer codigoCurso) {
         this.codigoCurso = codigoCurso;
     }
-    
+
     public CursoService getServicioCurso() {
         return servicioCurso;
     }
@@ -110,7 +111,7 @@ public class CursoManagedBean implements Serializable{
     public void setServicioCurso(CursoService servicioCurso) {
         this.servicioCurso = servicioCurso;
     }
-   
+
     public List<Curso> getListaCursos() {
         return listaCursos;
     }

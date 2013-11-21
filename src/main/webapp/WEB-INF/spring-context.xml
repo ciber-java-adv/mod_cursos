@@ -12,6 +12,8 @@
             
        default-lazy-init="true">
     
+    <import resource="spring-security.xml" />
+    
         <context:component-scan base-package="pe.edu.cibertec.proyectocurso" />
         <context:annotation-config />               
         
@@ -58,6 +60,8 @@
             <list>
                 <value>pe.edu.cibertec.proyectocurso.model.Curso</value>
                 <value>pe.edu.cibertec.proyectocurso.model.Auditoria</value>
+                <value>pe.edu.cibertec.proyectocurso.model.Rol</value>
+                <value>pe.edu.cibertec.proyectocurso.model.Usuario</value>
             </list>
         </property>
         <property name="hibernateProperties">

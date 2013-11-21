@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+   
+    <h:body>
+       
+        <h:form id="frmLogin" prependId="false">
+
+			<center>
+
+
+
+				<p:panelGrid id="pnlLogin"
+				style="position: absolute; width: 300px; top: 50%; left: 50%; margin-top: -150px; margin-left: -150px;"
+				>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">INGRESO DE USUARIOS</p:column>
+						</p:row>
+					</f:facet>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Usuario:"></p:outputLabel>
+						</p:column>
+						<p:column>
+						
+							 
+							<p:inputText id="j_username"
+								value="#{usuarioManagedBean.v_codusu}" required="true"
+								requiredMessage="Debe ingresar el usuario"></p:inputText>
+							 
+						
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Clave:"></p:outputLabel>
+						</p:column>
+						<p:column>
+						
+							 
+							<h:inputSecret id="j_password"
+								value="#{usuarioManagedBean.v_passusu}"
+								required="true" requiredMessage="Debe ingresar la clave"></h:inputSecret>
+							 
+								
+
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<center>
+							<p:commandButton value="Ingresar"
+							
+								id="btnIngresar" action="#{usuarioManagedBean.ejecutarLogin}"
+								update=":frmLogin:j_username, :frmLogin:j_password, :frmLogin:mnsLogin"
+								process="@this, :frmLogin"
+								icon="ui-icon-key"></p:commandButton>
+								
+							</center>
+						</p:column>
+						
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:messages id="mnsLogin"></p:messages>
+						</p:column>
+					</p:row>
+					
+				</p:panelGrid>
+
+
+			</center>
+
+		</h:form>
+        
+        
+    </h:body>
+</html>
+
