@@ -27,11 +27,13 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
     private UsuarioService servicioUsuario;
+    
+    private Usuario objUsuario = new Usuario();
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-        Usuario objUsuario = new Usuario();
+        //Usuario objUsuario = new Usuario();
         objUsuario.setNombre(name);
         objUsuario = servicioUsuario.obtenerUsuario(objUsuario);
 
@@ -68,4 +70,14 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     public void setServicioUsuario(UsuarioService servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
+
+    public Usuario getObjUsuario() {
+        return objUsuario;
+    }
+
+    public void setObjUsuario(Usuario objUsuario) {
+        this.objUsuario = objUsuario;
+    }
+    
+    
 }

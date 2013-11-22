@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import pe.edu.cibertec.proyectocurso.model.Usuario;
 import pe.edu.cibertec.proyectocurso.service.UsuarioService;
 
 @Component
+@Scope("session")
 public class UsuarioManagedBean {
 
     private String v_codusu;
@@ -43,7 +45,7 @@ public class UsuarioManagedBean {
                     v_codusu, v_passusu);
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
-            vista = "/curso/listaCursos?faces-redirect=true";
+            vista = "/index";
         } catch (AuthenticationException e) {
             e.printStackTrace();
             vista = "/login";

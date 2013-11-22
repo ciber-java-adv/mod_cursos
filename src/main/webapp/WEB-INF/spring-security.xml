@@ -17,7 +17,8 @@
                     default-target-url="/index.jsf"
                     
 			/>
-		  
+		<logout logout-success-url="/login.jsf" />    
+               
                 <session-management invalid-session-url="/login.jsf" />  
                 
 	</http>

@@ -2,20 +2,37 @@
       xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+
+      >
     <ui:composition>
+        
         <h:form>
-            <p:menubar>  
-                <p:menuitem value="File" icon="ui-icon-document"/>                      
-                <p:menuitem value="Edit" icon="ui-icon-pencil"/>                       
-                <p:menuitem value="Help" icon="ui-icon-help"/>                       
-                <p:menuitem value="Actions" icon="ui-icon-gear"/>                           
-                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />                
-                
-                <f:facet name="options">                                                
-                    <p:commandButton type="button" value="#{etiquetas.cl_button_cerrar}" icon="ui-icon-extlink" />  
-                </f:facet> 
-            </p:menubar>                                                
+            
+            <table border="0">
+
+                <tr>
+
+                    <td>
+
+                        <h:outputText value="Bienvenido al sistema #{myAuthenticationProvider.objUsuario.nombre}"></h:outputText>
+
+
+                    </td>
+                    <td>
+
+
+                      <a href="#{request.contextPath}/j_spring_security_logout">Logout</a>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+
+
         </h:form> 
     </ui:composition>
 </html>
