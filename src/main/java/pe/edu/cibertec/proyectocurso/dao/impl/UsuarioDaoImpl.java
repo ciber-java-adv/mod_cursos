@@ -22,16 +22,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Autowired
     private SessionFactory sessionFactory;
     
-    /*
-    @Override
-    public List<Usuario> listarUsuario() {
-
-        List<Usuario> listaUsuario = sessionFactory.getCurrentSession().createQuery("select u from Usuario u join fetch u.lstRol").list();
-
-        return listaUsuario;
-
-    }
-    */
+   
     
     public SessionFactory getSessionFactory() {
         return sessionFactory;

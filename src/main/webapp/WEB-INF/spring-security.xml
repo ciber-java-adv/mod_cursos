@@ -13,7 +13,7 @@
                               
 		<intercept-url pattern="/curso/*" access="hasAnyRole('usuarios','administradores')" />
                 
-                <form-login  
+                <form-login 
                     login-page="/login.jsf" 
                     default-target-url="/index.jsf"
                     
