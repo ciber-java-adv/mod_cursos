@@ -3,8 +3,15 @@ package pe.edu.cibertec.proyectocurso.managedbean;
 
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -37,7 +44,7 @@ public class UsuarioManagedBean {
     public UsuarioManagedBean() {
     }
 
-    public String ejecutarLogin(){
+    public String ejecutarLogin() throws ServletException, IOException{
         String vista = null;
         
         try {
@@ -50,6 +57,20 @@ public class UsuarioManagedBean {
             e.printStackTrace();
             vista = "/login";
         }
+        
+        
+        /*
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+ 
+        RequestDispatcher dispatcher = ((ServletRequest) context.getRequest())
+                 .getRequestDispatcher("/j_spring_security_check");
+ 
+        dispatcher.forward((ServletRequest) context.getRequest(),
+                (ServletResponse) context.getResponse());
+ 
+        FacesContext.getCurrentInstance().responseComplete();
+        * */
+        // It's OK to return null here because Faces is just going to exit.
         
         
         return vista;

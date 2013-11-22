@@ -21,20 +21,18 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring-context.xml</param-value>
     </context-param>
- 
-    <!-- The Bootstrap listener to start up and shut down Spring's root WebApplicationContext. It is registered to Servlet Container -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>    
-    <listener>
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>
     
     
-     <!-- Spring Security -->
+    
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bluesky</param-value>  
+    </context-param> 
+    
+    
+   
+        
+    <!-- Spring Security -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>
@@ -42,36 +40,58 @@
         </filter-class>
     </filter>
  
-   <filter-mapping>
+    <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/j_spring_security_logout</url-pattern>
-   </filter-mapping>
+        <url-pattern>/*</url-pattern>
+        <!--
+        <dispatcher>FORWARD</dispatcher>
+        -->
+        
+    </filter-mapping>
+ 
+    <!-- The Bootstrap listener to start up and shut down Spring's root WebApplicationContext. It is registered to Servlet Container -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>    
     
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+   
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>    
  
-    <!-- Project Stage Level -->
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
- 
+    
     <!-- Welcome Page -->
     <welcome-file-list>
         <welcome-file>/index.jsf</welcome-file>
     </welcome-file-list>
+    
+
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
  
     <!-- JSF Servlet is defined to container -->
+ 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-      
-    <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>bluesky</param-value>  
-    </context-param> 
+   
+   
+
  
     <!-- Mapping with servlet and url for the http requests. -->
+  
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.faces</url-pattern>
@@ -80,5 +100,6 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
+    
   
 </web-app>

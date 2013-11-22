@@ -9,9 +9,10 @@
         <global-method-security pre-post-annotations="enabled"/>
         
 	<http  use-expressions="true">
-                <intercept-url pattern="/login.jsf" access="permitAll" />
-                                
-		<intercept-url pattern="/**" access="hasRole('usuarios')" />
+                <intercept-url pattern="/login.jsf" access="permitAll"/>
+                              
+		<intercept-url pattern="/curso/*" access="hasAnyRole('usuarios','administradores')" />
+                
                 <form-login  
                     login-page="/login.jsf" 
                     default-target-url="/index.jsf"
