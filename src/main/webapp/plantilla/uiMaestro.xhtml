@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" >
-    <f:view contentType="text/html" locale="es">
+    <f:view contentType="text/html"  locale="#{usuarioManagedBean.v_locale}">
         <h:head>
             
             <f:facet name="first">            
@@ -32,7 +32,8 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="south" size="100">
-                    <h2>Integrantes:</h2>
+                   
+                    <h2><p:outputLabel value=" #{etiquetas.cl_integrantes} :"></p:outputLabel></h2>
                     <ul>
                     <li>Luis Benvenuto Calderón</li>
                     <li>Elmer Montenegro Ybañez</li>

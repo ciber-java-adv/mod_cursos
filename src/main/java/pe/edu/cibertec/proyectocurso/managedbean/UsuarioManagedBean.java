@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.RequestDispatcher;
@@ -32,7 +33,7 @@ public class UsuarioManagedBean implements Serializable{
 
     private String v_codusu;
     private String v_passusu;
-    
+    private String v_locale;
     
     @Autowired
     @Qualifier("authenticationManager")
@@ -43,6 +44,13 @@ public class UsuarioManagedBean implements Serializable{
     private UsuarioService servicioUsuario;
     
     public UsuarioManagedBean() {
+        v_locale="es";
+    }
+    
+    public void setearLocale(){
+        System.out.println("IDIOMA SELECCIONADO");
+        System.out.println(v_locale);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(v_locale));
     }
 
     public String ejecutarLogin() throws ServletException, IOException{
@@ -106,6 +114,14 @@ public class UsuarioManagedBean implements Serializable{
 
     public void setServicioUsuario(UsuarioService servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
+    }
+
+    public String getV_locale() {
+        return v_locale;
+    }
+
+    public void setV_locale(String v_locale) {
+        this.v_locale = v_locale;
     }
     
     

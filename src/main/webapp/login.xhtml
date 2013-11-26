@@ -21,13 +21,13 @@
                                  >
                         <f:facet name="header">
                             <p:row>
-                                <p:column colspan="2">INGRESO DE USUARIOS</p:column>
+                                <p:column colspan="2">#{etiquetas['cl_login_cabecera']}</p:column>
                             </p:row>
                         </f:facet>
 
                         <p:row>
                             <p:column>
-                                <p:outputLabel value="Usuario:"></p:outputLabel>
+                                <p:outputLabel value="#{etiquetas['cl_login_usuario']}"></p:outputLabel>
                             </p:column>
                             <p:column>
 
@@ -41,7 +41,7 @@
                         </p:row>
                         <p:row>
                             <p:column>
-                                <p:outputLabel value="Clave:"></p:outputLabel>
+                                <p:outputLabel value="#{etiquetas['cl_login_password']}"></p:outputLabel>
                             </p:column>
                             <p:column>
 
@@ -57,7 +57,7 @@
                         <p:row>
                             <p:column colspan="2">
                                 <center>
-                                    <p:commandButton value="Ingresar"
+                                    <p:commandButton value="#{etiquetas['cl_login_aceptar']}"
 
                                                      id="btnIngresar" action="#{usuarioManagedBean.ejecutarLogin}"
                                                      update=":frmLogin:j_username, :frmLogin:j_password, :frmLogin:mnsLogin"
@@ -78,7 +78,19 @@
 
 
                 </center>
+                
+                
+              
 
+            </h:form>
+            
+            <h:form>
+                  <h:commandLink action="#{usuarioManagedBean.setearLocale}">Español
+                    <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="es"></f:setPropertyActionListener>
+                </h:commandLink>
+                  <h:commandLink action="#{usuarioManagedBean.setearLocale}">Ingles
+                    <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="en"></f:setPropertyActionListener>
+                </h:commandLink>
             </h:form>
 
 

@@ -16,17 +16,22 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     </application>
     
     <!-- configuracion internacionalizacion -->
+    
     <application>
         <resource-bundle>
             <base-name>etiquetas</base-name>
             <var>etiquetas</var>
         </resource-bundle>
         <locale-config>
-            <default-locale>es_PE</default-locale>
-            <supported-locale>es_PE</supported-locale>
-            <supported-locale>en_US</supported-locale>
+            <default-locale>es</default-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>en</supported-locale>
         </locale-config>
     </application>
+    
+    
+   
+
     
     <!-- configuration of navigation rules -->    
     <!--        
