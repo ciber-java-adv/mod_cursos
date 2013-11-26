@@ -4,6 +4,7 @@ package pe.edu.cibertec.proyectocurso.managedbean;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.ExternalContext;
@@ -27,7 +28,7 @@ import pe.edu.cibertec.proyectocurso.service.UsuarioService;
 
 @Component
 @Scope("session")
-public class UsuarioManagedBean {
+public class UsuarioManagedBean implements Serializable{
 
     private String v_codusu;
     private String v_passusu;

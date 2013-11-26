@@ -95,11 +95,15 @@ public class CursoManagedBean implements Serializable {
             objCurso = servicioCurso.obtenerCurso(curso);
             servicioCurso.eliminarCurso(objCurso);
             vista = listarCursos();
-        }  /*catch (AccessDeniedException ex) {
+        }  
+        
+        /*catch (AccessDeniedException ex) {
             
             logger.log(Priority.ERROR, null, ex);
             vista = "/accesoDenegado";
-        }*/
+        }
+        */
+        
         catch (Exception ex) {
             
             logger.log(Priority.ERROR, null, ex);

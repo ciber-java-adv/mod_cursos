@@ -1,33 +1,44 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-  xmlns:beans="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
-        <global-method-security pre-post-annotations="enabled"/>
+    <global-method-security pre-post-annotations="enabled"/>
+    
+    
         
-	<http  use-expressions="true">
-                <intercept-url pattern="/login.jsf" access="permitAll"/>
-                              
-		<intercept-url pattern="/curso/*" access="hasAnyRole('usuarios','administradores')" />
-                
-                <form-login 
-                    login-page="/login.jsf" 
-                    default-target-url="/index.jsf"
+    <http  use-expressions="true">
+        <intercept-url pattern="/login.jsf" access="permitAll"/>
+       
+                           
+        <intercept-url pattern="/curso/*" access="hasAnyRole('usuarios','administradores')" />
+       
+      
+        
+        <form-login 
+            login-page="/login.jsf" 
+            default-target-url="/index.jsf"
                     
 			/>
-		<logout logout-success-url="/login.jsf" />    
+        <logout logout-success-url="/login.jsf" />    
                
-                <session-management invalid-session-url="/login.jsf" />  
+        <session-management invalid-session-url="/login.jsf" />  
                 
-	</http>
+    </http>
+        
+    
+    
+     
+  
+   
  
-	<authentication-manager alias="authenticationManager">
+    <authentication-manager alias="authenticationManager">
            
-           <authentication-provider ref="myAuthenticationProvider"/>
+        <authentication-provider ref="myAuthenticationProvider"/>
             
-	</authentication-manager>
+    </authentication-manager>
         
 </beans:beans>
