@@ -19,7 +19,7 @@
                                     <p:outputLabel value="#{etiquetas.cl_cursos_nombre}: "></p:outputLabel>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText value="#{cursoManagedBean.objCurso.nombreCurso}"></p:inputText>
+                                    <p:inputText value="#{cursoManagedBean.objCurso.nombreCurso}" required="true" requiredMessage="Ingrese nombre de curso"></p:inputText>
                                 </p:column>                                        
                             </p:row>
 
@@ -28,7 +28,7 @@
                                     <p:outputLabel value="#{etiquetas.cl_cursos_descripcion}: "></p:outputLabel>
                                 </p:column>
                                 <p:column>
-                                    <p:inputTextarea value="#{cursoManagedBean.objCurso.descripcionCurso}" cols="20" rows="5"></p:inputTextarea>
+                                    <p:inputTextarea value="#{cursoManagedBean.objCurso.descripcionCurso}" cols="20" rows="5" required="true" requiredMessage="Ingrese descripción de curso"></p:inputTextarea>
                                 </p:column>
                             </p:row>
 
@@ -43,6 +43,41 @@
                                     </p:selectOneMenu>
                                 </p:column>
                             </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_modPago}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>                                    
+                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.modalidadPago}" required="true" requiredMessage="Seleccione modalidad de pago">
+                                        <f:selectItem itemValue="" itemLabel="--Seleccione--"/>
+                                        <f:selectItems value="#{cursoManagedBean.listModalidadPago}"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+                             <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_duracion}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>                                    
+                                    <p:inputText value="#{cursoManagedBean.objCurso.duracion}" required="true" requiredMessage="Ingrese duración"></p:inputText> <h:outputText value=" horas"></h:outputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_prerequisitos}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>                                    
+                                    <p:inputTextarea value="#{cursoManagedBean.objCurso.preRequisitos}" required="true" requiredMessage="Ingrese pre requisitos"></p:inputTextarea>
+                                </p:column>
+                            </p:row>
+                             <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_creditos}: "></p:outputLabel>
+                                </p:column>
+                                <p:column>                                    
+                                    <p:inputText value="#{cursoManagedBean.objCurso.creditos}" required="true" requiredMessage="Ingrese número de créditos"></p:inputText>
+                                </p:column>
+                            </p:row>
 
                             <p:row>
                                 <p:column colspan="2">
@@ -51,7 +86,7 @@
                             </p:row> 
                         </p:panelGrid>
                     </p:panel>
-                    <p:growl id="message" redisplay="true" globalOnly="true" />
+                    <p:messages id="message" ></p:messages>
                 </h:form>
             </div>
 

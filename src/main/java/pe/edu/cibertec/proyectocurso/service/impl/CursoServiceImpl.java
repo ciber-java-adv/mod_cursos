@@ -3,6 +3,7 @@ package pe.edu.cibertec.proyectocurso.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.cibertec.proyectocurso.dao.CursoDao;
@@ -31,6 +32,7 @@ public class CursoServiceImpl implements CursoService{
     }
     
     @Transactional
+    @PreAuthorize("hasAnyRole('administradores','usuarios')")
     @Override
     public void grabarCurso(Curso objCurso) {
        cursoDao.grabarCurso(objCurso);
@@ -43,12 +45,14 @@ public class CursoServiceImpl implements CursoService{
     }
     
     @Transactional
+    @PreAuthorize("hasRole('administradores')")
     @Override
     public void actualizarCurso(Curso objCurso) {
       cursoDao.actualizarCurso(objCurso);
     }
     
     @Transactional
+    @PreAuthorize("hasRole('administradores')")
     @Override
     public void eliminarCurso(Curso objCurso) {
        cursoDao.eliminarCurso(objCurso);

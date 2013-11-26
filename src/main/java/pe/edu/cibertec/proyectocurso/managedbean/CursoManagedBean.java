@@ -7,10 +7,14 @@ package pe.edu.cibertec.proyectocurso.managedbean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.faces.model.SelectItem;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 import pe.edu.cibertec.proyectocurso.model.Curso;
 import pe.edu.cibertec.proyectocurso.service.CursoService;
@@ -28,13 +32,11 @@ public class CursoManagedBean implements Serializable {
     //@ManagedProperty(value="#{cursoService}")
     @Autowired
     private CursoService servicioCurso;
-    
-    
-    
     private List<Curso> listaCursos = new ArrayList<Curso>();
     private Curso objCurso = new Curso();
     private Integer codigoCurso;
     private List<SelectItem> listTipoCurso;
+    private List<SelectItem> listModalidadPago;
 
     public CursoManagedBean() {
         logger.info("Inicio - CursoManagedBean");
@@ -46,19 +48,26 @@ public class CursoManagedBean implements Serializable {
         logger.info("Listar Cursos");
         listaCursos = servicioCurso.listarCursos();
 
-     
 
-        return "/curso/listaCursos?faces-redirect=true";
+
+        //return "/curso/listaCursos?faces-redirect=true";
+        return "/curso/listaCursos";
     }
 
     public String grabarCurso() {
-        if (objCurso.getCodigoCurso() == -1) {
-            logger.info("ENTRA A INSERTAR CURSOS");
-            servicioCurso.grabarCurso(objCurso);
-        } else {
-            logger.info("ENTRA A ACTUALIZAR CURSOS");
-            servicioCurso.actualizarCurso(objCurso);
+
+        try {
+            if (objCurso.getCodigoCurso() == -1) {
+                logger.info("ENTRA A INSERTAR CURSOS");
+                servicioCurso.grabarCurso(objCurso);
+            } else {
+                logger.info("ENTRA A ACTUALIZAR CURSOS");
+                servicioCurso.actualizarCurso(objCurso);
+            }
+        } catch (Exception ex) {
+            logger.log(Priority.ERROR, null, ex);
         }
+
 
 
         return listarCursos();
@@ -78,12 +87,32 @@ public class CursoManagedBean implements Serializable {
     }
 
     public String eliminarCurso() {
-        Curso curso = new Curso();
-        curso.setCodigoCurso(codigoCurso);
-        objCurso = servicioCurso.obtenerCurso(curso);
-        servicioCurso.eliminarCurso(objCurso);
-        //return "/curso/listaCursos?faces-redirect=true";
-        return listarCursos();
+       
+        String vista = null;
+        try {
+            Curso curso = new Curso();
+            curso.setCodigoCurso(codigoCurso);
+            objCurso = servicioCurso.obtenerCurso(curso);
+            servicioCurso.eliminarCurso(objCurso);
+            vista = listarCursos();
+        }  /*catch (AccessDeniedException ex) {
+            
+            logger.log(Priority.ERROR, null, ex);
+            vista = "/accesoDenegado";
+        }*/
+        catch (Exception ex) {
+            
+            logger.log(Priority.ERROR, null, ex);
+            vista = "/accesoDenegado";
+        }
+       
+     
+       return vista;
+        
+
+
+
+
 
     }
 
@@ -93,6 +122,10 @@ public class CursoManagedBean implements Serializable {
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_CIENCIAS, Constante.TIPOCURSO_CIENCIAS_DESC));
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_HUMANIDADES, Constante.TIPOCURSO_HUMANIDADES_DESC));
         listTipoCurso.add(new SelectItem(Constante.TIPOCURSO_POLITICA, Constante.TIPOCURSO_POLITICA_DESC));
+
+        listModalidadPago = new ArrayList<SelectItem>();
+        listModalidadPago.add(new SelectItem(Constante.MODPAGO_CONTADO, Constante.MODPAGO_CONTADO_DESC));
+        listModalidadPago.add(new SelectItem(Constante.MODPAGO_CREDITO, Constante.MODPAGO_CREDITO_DESC));
     }
 
     //Metodos Get - Set
@@ -131,5 +164,12 @@ public class CursoManagedBean implements Serializable {
     public List<SelectItem> getListTipoCurso() {
         return listTipoCurso;
     }
-    
+
+    public List<SelectItem> getListModalidadPago() {
+        return listModalidadPago;
+    }
+
+    public void setListModalidadPago(List<SelectItem> listModalidadPago) {
+        this.listModalidadPago = listModalidadPago;
+    }
 }

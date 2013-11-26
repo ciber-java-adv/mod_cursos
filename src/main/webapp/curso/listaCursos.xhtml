@@ -25,7 +25,7 @@
                                         </p:commandLink>                                    
                                     </p:column>
                                     <p:column headerText="">
-                                        <p:commandLink action="#{cursoManagedBean.eliminarCurso}" value="E" update=":frmListaCursos:tablaCursos">
+                                        <p:commandLink  action="#{cursoManagedBean.eliminarCurso}" value="E" update=":frmListaCursos:tablaCursos">
                                             <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
                                         </p:commandLink>
                                     </p:column>
@@ -40,6 +40,8 @@
                     </p:panelGrid>
                 </h:form>
             </div>
+           
+               
 
         </ui:define>
     </ui:composition>
