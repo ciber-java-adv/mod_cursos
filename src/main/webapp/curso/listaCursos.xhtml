@@ -17,8 +17,8 @@
                             <p:column>
                                 <p:dataTable id="tablaCursos" value="#{cursoManagedBean.listaCursos}" var="objCurso">
 
-                                    <p:column headerText="Codigo">#{objCurso.codigoCurso}</p:column>
-                                    <p:column headerText="Descripcion">#{objCurso.nombreCurso}</p:column>
+                                    <p:column headerText="#{etiquetas.cl_cabecera_tabla_codigo}">#{objCurso.codigoCurso}</p:column>
+                                    <p:column headerText="#{etiquetas.cl_cabecera_tabla_descripcion}">#{objCurso.nombreCurso}</p:column>
                                     <p:column headerText="">
                                         <p:commandLink action="#{cursoManagedBean.obtenerCurso}" value="A" >                                       
                                             <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
