@@ -37,17 +37,20 @@
                 <property name="password" value="${jdbc.password}" />
           </bean>
         -->
-                  
-        <!--
-           <bean id="cursoService" class="pe.edu.cibertec.proyectocurso.service.impl.CursoServiceImpl">
-               <property name="cursoDao" ref="cursoDao" />
-           </bean>
+ 
+
+    
+              
+     <!--
+        <bean id="cursoService" class="pe.edu.cibertec.proyectocurso.service.impl.CursoServiceImpl">
+            <property name="cursoDao" ref="cursoDao" />
+        </bean>
 
 
-         <bean id="cursoDao" class="pe.edu.cibertec.proyectocurso.dao.impl.CursoDaoImpl">
-             <property name="sessionFactory" ref="SessionFactory" />
-         </bean>    
-       -->
+        <bean id="cursoDao" class="pe.edu.cibertec.proyectocurso.dao.impl.CursoDaoImpl">
+            <property name="sessionFactory" ref="SessionFactory" />
+        </bean>    
+      -->
     
     
     <!-- Session Factory Declaration -->

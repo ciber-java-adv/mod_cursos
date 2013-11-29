@@ -11,19 +11,34 @@
     
         
     <http  use-expressions="true">
-        <intercept-url pattern="/login.jsf" access="permitAll"/>                                  
+        <intercept-url pattern="/login.jsf" access="permitAll"/>
+       
+                           
         <intercept-url pattern="/curso/*" access="hasAnyRole('usuarios','administradores')" />
-                     
-        <form-login login-page="/login.jsf" default-target-url="/index.jsf"/>
+       
+      
+        
+        <form-login 
+            login-page="/login.jsf" 
+            default-target-url="/index.jsf"
+                    
+			/>
         <logout logout-success-url="/login.jsf" />    
                
         <session-management invalid-session-url="/login.jsf" />  
                 
     </http>
         
-                   
-    <authentication-manager alias="authenticationManager">           
-        <authentication-provider ref="myAuthenticationProvider"/>            
+    
+    
+     
+  
+   
+ 
+    <authentication-manager alias="authenticationManager">
+           
+        <authentication-provider ref="myAuthenticationProvider"/>
+            
     </authentication-manager>
         
 </beans:beans>
