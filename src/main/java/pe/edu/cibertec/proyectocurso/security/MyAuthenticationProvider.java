@@ -30,6 +30,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     
     private Usuario objUsuario = new Usuario();
 
+    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
@@ -59,6 +60,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
     }
 
+    @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }

@@ -61,7 +61,7 @@ public class UsuarioManagedBean implements Serializable{
                     v_codusu, v_passusu);
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
-            vista = "/index";
+            vista = "/index?faces-redirect=true";
         } catch (AuthenticationException e) {
             e.printStackTrace();
             vista = "/login";

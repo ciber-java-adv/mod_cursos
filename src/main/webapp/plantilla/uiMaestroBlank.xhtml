@@ -5,14 +5,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" >
     <f:view contentType="text/html" locale="#{usuarioManagedBean.v_locale}">
-
+        <h:head>
+            <ui:insert name="head"/>
+        </h:head>
         <h:body>
-            <p:layout fullPage="true">
-                   <p:layoutUnit position="center">
-                    <ui:insert name="content" />
-                   </p:layoutUnit>
-            </p:layout>
-            
+            <ui:insert name="content" />            
         </h:body>
     </f:view>
 </html>

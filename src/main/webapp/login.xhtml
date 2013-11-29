@@ -1,24 +1,65 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
-    <ui:composition template="/plantilla/uiMaestroBlank.xhtml">
-
-        <ui:define name="content">
+    <ui:composition template="/plantilla/uiMaestroBlank.xhtml">        
+        <ui:define name="head">
+            <style type="text/css">
+                html, body{                    
+                    
+                }
+                body{
+                    background-image: url('img/fondo.jpg');                    
+                }
+                table{                    
+                    width: 100%;                    
+                }
+                ul li{
+                    display: inline-block;
+                }
+                a{
+                    color: white;
+                    font-weight: bold;
+                }
+                #logueo{
+                    position: absolute; 
+                    width: 300px; 
+                    top: 40%; 
+                    bottom: 0; 
+                    left: 0; 
+                    right: 0;                     
+                    margin-top: auto; 
+                    margin-bottom: auto; 
+                    margin-left: auto;                     
+                    margin-right: auto;
+                }
+            </style>
+        </ui:define>
+        <ui:define name="content">  
+            <header>
+                <h:form>
+                    <ul>
+                        <li>
+                            <h:commandLink action="#{usuarioManagedBean.setearLocale}">Español
+                                <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="es"></f:setPropertyActionListener>
+                            </h:commandLink>
+                        </li>                      
+                        <li>
+                            <h:commandLink action="#{usuarioManagedBean.setearLocale}">Ingles
+                                <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="en"></f:setPropertyActionListener>
+                            </h:commandLink>
+                        </li>
+                    </ul>                                
+                </h:form>  
+            </header>
 
             <h:form id="frmLogin" prependId="false">
-
-                <center>
-
-
-
-                    <p:panelGrid id="pnlLogin"
-                                 style="position: absolute; width: 300px; top: 50%; left: 50%; margin-top: -150px; margin-left: -150px;"
-                                 >
+                <div id="logueo">
+                    <p:panelGrid id="pnlLogin" style="-moz-border-radius: 15px; ">
                         <f:facet name="header">
                             <p:row>
                                 <p:column colspan="2">#{etiquetas['cl_login_cabecera']}</p:column>
@@ -30,13 +71,9 @@
                                 <p:outputLabel value="#{etiquetas['cl_login_usuario']}"></p:outputLabel>
                             </p:column>
                             <p:column>
-
-
                                 <p:inputText id="j_username"
                                              value="#{usuarioManagedBean.v_codusu}" required="true"
                                              requiredMessage="Debe ingresar el usuario"></p:inputText>
-
-
                             </p:column>
                         </p:row>
                         <p:row>
@@ -44,14 +81,10 @@
                                 <p:outputLabel value="#{etiquetas['cl_login_password']}"></p:outputLabel>
                             </p:column>
                             <p:column>
-
-
                                 <h:inputSecret id="j_password"
+                                               class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"
                                                value="#{usuarioManagedBean.v_passusu}"
                                                required="true" requiredMessage="Debe ingresar la clave"></h:inputSecret>
-
-
-
                             </p:column>
                         </p:row>
                         <p:row>
@@ -74,26 +107,10 @@
                             </p:column>
                         </p:row>
 
-                    </p:panelGrid>
-
-
-                </center>
-                
-                
-              
+                    </p:panelGrid> 
+                </div>
 
             </h:form>
-            
-            <h:form>
-                  <h:commandLink action="#{usuarioManagedBean.setearLocale}">Español
-                    <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="es"></f:setPropertyActionListener>
-                </h:commandLink>
-                  <h:commandLink action="#{usuarioManagedBean.setearLocale}">Ingles
-                    <f:setPropertyActionListener target="#{usuarioManagedBean.v_locale}" value="en"></f:setPropertyActionListener>
-                </h:commandLink>
-            </h:form>
-
-
         </ui:define>
     </ui:composition>
 </html>

@@ -5,11 +5,29 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" >
     <f:view contentType="text/html"  locale="#{usuarioManagedBean.v_locale}">
-        <h:head>
-            
+        <h:head>            
             <f:facet name="first">            
                 <title>#{etiquetas.cl_titulo}</title>
             </f:facet>           
+            <style type="text/css">
+                .ui-widget{
+                    font-size: 12px !important;
+                }
+                html, body{                    
+
+                }
+                table{                    
+                    width: 100%;                    
+                }
+                input, textarea, label, .combo{
+                    width: 95% !important;                    
+                }
+                                
+                .ui-widget-overlay {                    
+                    opacity: 0.3 !important;
+                }
+
+            </style>
             <ui:insert name="resources-app"/>                              
         </h:head>
         <h:body>
@@ -18,7 +36,7 @@
                 <p:layoutUnit position="north">
                     <ui:include src="uiCabecera.xhtml"/>
                 </p:layoutUnit>
-                
+
                 <p:layoutUnit position="west" size="200">
                     <ui:include src="uiMenu.xhtml"/>
                 </p:layoutUnit>
@@ -30,19 +48,25 @@
                 <p:layoutUnit position="center">
                     <ui:insert name="app"/>  
                 </p:layoutUnit>
-                
-                <p:layoutUnit position="south" size="100">
-                   
-                    <h2><p:outputLabel value=" #{etiquetas.cl_integrantes} :"></p:outputLabel></h2>
+
+                <p:layoutUnit position="south" size="110">                   
+                    <h2 style="margin-top: 0px;"><p:outputLabel value=" #{etiquetas.cl_integrantes} :"></p:outputLabel></h2>
                     <ul>
-                    <li>Luis Benvenuto Calderón</li>
-                    <li>Elmer Montenegro Ybañez</li>
-                    <li>Josué Huancapaza Córdova </li>
+                        <li>Luis Benvenuto Calderón</li>
+                        <li>Elmer Montenegro Ybañez</li>
+                        <li>Josué Huancapaza Córdova </li>
                     </ul>
                 </p:layoutUnit>
             </p:layout>
-                                  
-            <ui:insert name="dialogs"/>        
+
+            <ui:insert name="dialogs">
+                <p:ajaxStatus id="waitStatus" onstart="dgStatus.show();" oncomplete="dgStatus.hide();"/>            
+                <p:dialog id="statusDialog" widgetVar="dgStatus" width="210" modal="true" closable="false" resizable="false" showHeader="false">
+                    <h:panelGrid columns="1">                        
+                        <h:outputText value="Espere un momento..."/>
+                    </h:panelGrid> 
+                </p:dialog>
+            </ui:insert>        
         </h:body>
     </f:view>
 </html>

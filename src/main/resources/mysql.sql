@@ -13,6 +13,13 @@ CREATE TABLE `curso` (
   PRIMARY KEY (`idCurso`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `auditoria` (
+  `idauditoria` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime DEFAULT NULL,
+  `valor` varchar(200) DEFAULT NULL,  
+  PRIMARY KEY (`idauditoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 CREATE TABLE usuario (
   idusuario INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NOT NULL,

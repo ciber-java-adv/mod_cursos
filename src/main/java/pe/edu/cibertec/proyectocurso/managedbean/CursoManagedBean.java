@@ -47,9 +47,6 @@ public class CursoManagedBean implements Serializable {
     public String listarCursos() {
         logger.info("Listar Cursos");
         listaCursos = servicioCurso.listarCursos();
-
-
-
         //return "/curso/listaCursos?faces-redirect=true";
         return "/curso/listaCursos";
     }

@@ -12,7 +12,7 @@
 
                 <h:form id="frmRegistrarCurso">
                     <h:inputHidden value="#{cursoManagedBean.objCurso.codigoCurso}"></h:inputHidden>
-                    <p:panel header="#{etiquetas['cl_cursos_titulo_registro']}" style="width: 250px;"> 
+                    <p:panel header="#{etiquetas['cl_cursos_titulo_registro']}" style="width: 50%; position: absolute; top: 15%; right: 25%;"> 
                         <p:panelGrid>
                             <p:row>
                                 <p:column>
@@ -37,7 +37,7 @@
                                     <p:outputLabel value="#{etiquetas.cl_cursos_tipoCurso}: "></p:outputLabel>
                                 </p:column>
                                 <p:column>                                    
-                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.tipoCurso}" required="true" requiredMessage="#{etiquetas.cl_mensaje_tipo_curso}">
+                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.tipoCurso}" required="true" requiredMessage="#{etiquetas.cl_mensaje_tipo_curso}" styleClass="combo">
                                         <f:selectItem itemValue="" itemLabel="#{etiquetas.cl_seleccion_defecto}"/>
                                         <f:selectItems value="#{cursoManagedBean.listTipoCurso}"/>
                                     </p:selectOneMenu>
@@ -48,7 +48,7 @@
                                     <p:outputLabel value="#{etiquetas.cl_cursos_modPago}: "></p:outputLabel>
                                 </p:column>
                                 <p:column>                                    
-                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.modalidadPago}" required="true" requiredMessage="#{etiquetas.cl_mensaje_modalidad_curso}">
+                                    <p:selectOneMenu value="#{cursoManagedBean.objCurso.modalidadPago}" required="true" requiredMessage="#{etiquetas.cl_mensaje_modalidad_curso}" styleClass="combo">
                                         <f:selectItem itemValue="" itemLabel="#{etiquetas.cl_seleccion_defecto}"/>
                                         <f:selectItems value="#{cursoManagedBean.listModalidadPago}"/>
                                     </p:selectOneMenu>
@@ -56,10 +56,10 @@
                             </p:row>
                              <p:row>
                                 <p:column>
-                                    <p:outputLabel value="#{etiquetas.cl_cursos_duracion}: "></p:outputLabel>
+                                    <p:outputLabel value="#{etiquetas.cl_cursos_duracion} (#{etiquetas.cl_unidad_tiempo}): "></p:outputLabel>
                                 </p:column>
                                 <p:column>                                    
-                                    <p:inputText value="#{cursoManagedBean.objCurso.duracion}" required="true" requiredMessage="#{etiquetas.cl_mensaje_duracion_curso}"></p:inputText> <h:outputText value=" #{etiquetas.cl_unidad_tiempo}"></h:outputText>
+                                    <p:inputText value="#{cursoManagedBean.objCurso.duracion}" required="true" requiredMessage="#{etiquetas.cl_mensaje_duracion_curso}"></p:inputText> 
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -80,13 +80,15 @@
                             </p:row>
 
                             <p:row>
-                                <p:column colspan="2">
+                                <p:column colspan="2" style="text-align: center;">
                                     <p:commandButton value="#{etiquetas.cl_button_grabar}" action="#{cursoManagedBean.grabarCurso}" update="message" ajax="false"></p:commandButton>
+                                    <p:commandButton value="#{etiquetas.cl_button_cancelar}" action="#{cursoManagedBean.listarCursos}" ajax="false" immediate="true"></p:commandButton>
                                 </p:column>
                             </p:row> 
                         </p:panelGrid>
+                        <p:messages id="message" ></p:messages>
                     </p:panel>
-                    <p:messages id="message" ></p:messages>
+                    
                 </h:form>
             </div>
 

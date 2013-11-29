@@ -15,17 +15,22 @@
                     <p:panelGrid style="border: 0">
                         <p:row>
                             <p:column>
-                                <p:dataTable id="tablaCursos" value="#{cursoManagedBean.listaCursos}" var="objCurso">
+                                <p:dataTable id="tablaCursos" 
+                                             value="#{cursoManagedBean.listaCursos}" 
+                                             var="objCurso"
+                                             paginator="true"
+                                             paginatorPosition="bottom"
+                                             rows="20">
 
                                     <p:column headerText="#{etiquetas.cl_cabecera_tabla_codigo}">#{objCurso.codigoCurso}</p:column>
                                     <p:column headerText="#{etiquetas.cl_cabecera_tabla_descripcion}">#{objCurso.nombreCurso}</p:column>
                                     <p:column headerText="">
-                                        <p:commandLink action="#{cursoManagedBean.obtenerCurso}" value="A" >                                       
+                                        <p:commandLink action="#{cursoManagedBean.obtenerCurso}" value="Actualizar" >                                       
                                             <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
                                         </p:commandLink>                                    
                                     </p:column>
                                     <p:column headerText="">
-                                        <p:commandLink  action="#{cursoManagedBean.eliminarCurso}" value="E" update=":frmListaCursos:tablaCursos">
+                                        <p:commandLink  action="#{cursoManagedBean.eliminarCurso}" value="Eliminar" update=":frmListaCursos:tablaCursos">
                                             <f:setPropertyActionListener target="#{cursoManagedBean.codigoCurso}" value="#{objCurso.codigoCurso}"></f:setPropertyActionListener>
                                         </p:commandLink>
                                     </p:column>
